@@ -2,7 +2,6 @@
   <div id="app">
     <section class="appview" :style="{backgroundColor:appNavConfig.backgroundColor}">
       <section class="xinyi-app-content" :style="{top:contentTop + 'px'}">
-        <div v-if="isLoading">加载中</div>
         <transition :name="transitionName">
           <router-view/>
         </transition>

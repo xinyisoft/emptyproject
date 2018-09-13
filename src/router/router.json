@@ -1,5 +1,7 @@
 [
   "pages/main/main",
+  "pages/auth/no",
+  "pages/auth/example",
   "pages/test2/test2",
   "pages/testXY/testXY",
   "pages/test/test"

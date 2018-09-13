@@ -9,21 +9,17 @@
         XY方法测试
       </cell-box>
     </group>
-    <group-title>DEMO</group-title>
+    <group-title>权限</group-title>
+    <group>
+      <cell-box link="/pages/auth/example" is-link>
+        权限包裹标签
+      </cell-box>
+    </group>
   </div>
 </template>
 <script>
-  import {Grid, GridItem, CellBox, Group, GroupTitle} from 'vux'
-
   export default {
     name: 'mainView',
-    components: {
-      GroupTitle,
-      CellBox,
-      Grid,
-      Group,
-      GridItem
-    },
     methods: {
       test() {
 

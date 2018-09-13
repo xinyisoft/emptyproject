@@ -7,9 +7,19 @@ import Vuex from 'vuex'
 // import FastClick from 'fastclick'
 import router from './router'
 import 'material-design-icons/iconfont/material-icons.css'
+import XinyiAuth from './components/auth/index.js'
+import {TransferDom, AlertPlugin, ConfirmPlugin, ToastPlugin} from 'vux'
 
+Vue.directive('transfer-dom', TransferDom)
 Vue.use(Vuex)
-Vue.use(Xinyi);
+Vue.use(Xinyi)
+Vue.use(XinyiAuth)
+
+// 注册基本插件
+Vue.use(AlertPlugin)
+Vue.use(ConfirmPlugin)
+Vue.use(ToastPlugin)
+
 const shouldUseTransition = !/transition=none/.test(location.href)
 // FastClick.attach(document.body)
 
@@ -33,7 +43,9 @@ const store = new Vuex.Store({
       openid: 'OPENID-aksajaskjaslas',
       xinyitoken: 'jajaassaksadlkdas',
       sid: '100'
-    }
+    },
+    authPublic: ['/', '/pages/auth/no'],
+    authConfig: {'/pages/index/index': true, '/pages/test/test': true}
   },
   mutations: {
     historyNumberPush(state, payload) {
@@ -79,11 +91,12 @@ methods.forEach(key => {
     key: key,
     router: router[key].bind(router)
   }
-  console.log('method key', key, method)
   router[key] = function (...args) {
     isPush = true
     if (method.key === 'push') {
-      store.commit('historyNumberPush', {number: 1})
+      if (args[0] !== '/pages/auth/no') {
+        store.commit('historyNumberPush', {number: 1})
+      }
     } else if (method.go === 'push') {
       store.commit('historyNumberPush', {number: args[0]})
     }
@@ -94,6 +107,14 @@ methods.forEach(key => {
 // 路由开始
 router.beforeEach((to, from, next) => {
   // console.log('beforeEach', to, from)
+  // 编译版本检测权限
+  if (process.env.NODE_ENV === 'production') {
+    if (store.state.authPublic.indexOf(to.path) === -1 && !store.state.authConfig[to.path]) {
+      router.push('/pages/auth/no')
+      next(false)
+      return false
+    }
+  }
   // 设置页面开始加载
   store.commit('updateLoadingStatus', {isLoading: true})
   //
