@@ -2,7 +2,8 @@
   <div class="xinyi-error-page">
     <div class="xinyi-error-content">
       <div>
-        <h4>404</h4>
+        <router-link to="/pages/test/test">
+        <h4>404</h4></router-link>
         <h5>这里是404站台，找不到你要找的页面。</h5>
       </div>
     </div>
