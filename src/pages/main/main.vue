@@ -3,6 +3,7 @@
     <router-link to="/pages/test/test">跳转到测试</router-link>
     <grid>
       <grid-item label="Grid" v-for="i in 9">
+        {{i}}
         <img slot="icon" src="../../assets/logo.png">
       </grid-item>
     </grid>

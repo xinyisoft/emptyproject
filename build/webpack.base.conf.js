@@ -70,7 +70,11 @@ const webpackConfig = {
       },
       {
         test: /\.less$/,
-        loader: "style-loader!css-loader!less-loader",
+        use: [
+          'style-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'less-loader'
+        ]
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
