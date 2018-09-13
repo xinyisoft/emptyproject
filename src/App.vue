@@ -54,7 +54,7 @@
       },
       closeApp() {
         try {
-          XY.close();
+          XY.windowClose();
         } catch (e) {
 
         }
