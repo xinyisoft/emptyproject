@@ -19,7 +19,7 @@ routerdata.forEach(function (obj, index) {
   if (index === 0) {
     router.addRoutes([{
       path: '/',
-      name: "home",
+      name: 'home',
       component: resolve => require(['../' + obj], resolve),
       meta: {
         config: require('../' + obj + '.json')
