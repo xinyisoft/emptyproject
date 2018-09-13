@@ -1,5 +1,13 @@
 <template>
-  <div></div>
+  <div class="xinyi-error-page">
+    <div class="xinyi-error-content">
+      <div>
+        <h4>404</h4>
+        <h5>这里是404站台，找不到你要找的页面。</h5>
+      </div>
+    </div>
+  </div>
+
 </template>
 
 <script>
@@ -38,6 +46,26 @@
   }
 </script>
 
-<style scoped>
+<style lang="less">
+  .xinyi-error-page{
+    background: #ffffff;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    .xinyi-error-content{
+      position: absolute;
+      top: calc(50% - 150px);
+      left:0;
+      right:0;
+    }
+    h4{
+      font-size: 6rem;
+      color:#5cadff;
+    }
+    h5{
+      color:#808695;
+      font-size: 1rem;
+    }
+  }
 
 </style>
