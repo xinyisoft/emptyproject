@@ -1,6 +1,6 @@
 {
   "navigationBarBackgroundColor": "green",
-  "navigationBarTextStyle": "#FFF",
+  "navigationBarTextStyle": "yellow",
   "navigationBarTitleText": "测试页2",
   "backgroundColor": "#eeeeee",
   "backgroundTextStyle": "light"

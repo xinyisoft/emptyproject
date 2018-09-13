@@ -32,7 +32,7 @@
     name: 'App',
     data() {
       return {
-        contentTop: 80
+        contentTop: 68
       }
     },
     computed: {
