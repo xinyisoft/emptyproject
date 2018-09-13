@@ -2,16 +2,16 @@
   <div>
     <group-title>DEMO</group-title>
     <group>
-      <cell-box link="/pages/test/test" is-link>
+      <cell-box link="/pages/example/link1" is-link>
         跳转到测试
       </cell-box>
-      <cell-box link="/pages/testXY/testXY" is-link>
+      <cell-box link="/pages/example/testXY" is-link>
         XY方法测试
       </cell-box>
     </group>
     <group-title>权限</group-title>
     <group>
-      <cell-box link="/pages/auth/example" is-link>
+      <cell-box link="/pages/example/auth" is-link>
         权限包裹标签
       </cell-box>
     </group>
