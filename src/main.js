@@ -78,13 +78,13 @@ methods.forEach(key => {
     } else if (method.go === 'push') {
       store.commit('historyNumberPush', {number: args[0]})
     }
-    console.log('method', method, args)
+    // console.log('method', method, args)
     method.router.apply(null, args)
   }
 })
 // 路由开始
 router.beforeEach((to, from, next) => {
-  console.log('beforeEach', to, from)
+  // console.log('beforeEach', to, from)
   // 设置页面开始加载
   store.commit('updateLoadingStatus', {isLoading: true})
   //

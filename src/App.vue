@@ -2,6 +2,7 @@
   <div id="app">
     <section class="appview" :style="{backgroundColor:appNavConfig.backgroundColor}">
       <section class="xinyi-app-content" :style="{top:contentTop + 'px'}">
+        <div v-if="isLoading">加载中</div>
         <transition :name="transitionName">
           <router-view/>
         </transition>
@@ -11,7 +12,7 @@
         <div class="xinyi-app-bar-left-button">
           <div class="nav-icon" v-if="historyNumber > 0" @click="goback"><i class="material-icons">chevron_left</i>
           </div>
-          <div class="nav-icon"><i class="material-icons">close</i></div>
+          <div class="nav-icon" @click="closeApp"><i class="material-icons">close</i></div>
         </div>
         <div class="xinyi-app-bar-title">
           {{appNavConfig.navigationBarTitleText}}{{historyNumber}}
@@ -50,6 +51,13 @@
     methods: {
       goback() {
         this.$router.back()
+      },
+      closeApp() {
+        try {
+          XY.close();
+        } catch (e) {
+
+        }
       }
     }
     // beforeCreate() {
