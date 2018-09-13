@@ -55,7 +55,16 @@ const store = new Vuex.Store({
       state.historyNumber = state.historyNumber - payload.number
     },
     setPageConfig(state, config) {
-      state.appNavConfig = Object.assign({}, state.appNavConfig, config)
+      state.appNavConfig = Object.assign({}, state.appNavConfig, {
+        navigationBarBackgroundColor: '#ffffff',
+        navigationBarTextStyle: 'black',
+        navigationBarTitleText: '轻餐饮小程序',
+        backgroundColor: '#eeeeee',
+        backgroundTextStyle: 'light',
+        navigationImmerse: false,
+        navigationMenus: [],
+        navigationBackButton: false
+      }, config)
     },
     updateLoadingStatus(state, payload) {
       state.isLoading = payload.isLoading
@@ -106,7 +115,7 @@ methods.forEach(key => {
 })
 // 路由开始
 router.beforeEach((to, from, next) => {
-  // console.log('beforeEach', to, from)
+  console.log('beforeEach', to, from)
   // 编译版本检测权限
   if (process.env.NODE_ENV === 'production') {
     if (store.state.authPublic.indexOf(to.path) === -1 && !store.state.authConfig[to.path]) {
