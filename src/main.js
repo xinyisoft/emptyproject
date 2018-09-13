@@ -27,6 +27,12 @@ const store = new Vuex.Store({
       navigationImmerse: false,
       navigationMenus: [],
       navigationBackButton: false
+    },
+    appConfig: {
+      appid: 1000,
+      openid: 'OPENID-aksajaskjaslas',
+      xinyitoken: 'jajaassaksadlkdas',
+      sid: '100'
     }
   },
   mutations: {
