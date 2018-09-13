@@ -15,7 +15,7 @@
           <div class="nav-icon" @click="closeApp"><i class="material-icons">close</i></div>
         </div>
         <div class="xinyi-app-bar-title">
-          {{appNavConfig.navigationBarTitleText}}{{historyNumber}}
+          {{appNavConfig.navigationBarTitleText}}
         </div>
         <div class="xinyi-app-bar-rght-tools">
           <i class="material-icons">more_horiz</i>
