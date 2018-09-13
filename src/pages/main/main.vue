@@ -6,7 +6,7 @@
       </cell-box>
     </group>
     <grid>
-      <grid-item :label="'Grid'+i" v-for="i in 4" :key="i">
+      <grid-item :label="'Grid'+i" v-for="i in 4" :key="i" link="/pages/test/test">
         <img slot="icon" src="../../assets/logo.png">
       </grid-item>
     </grid>
