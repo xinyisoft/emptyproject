@@ -4,14 +4,14 @@ import Vue from 'vue'
 import Xinyi from './components/xinyi'
 import App from './App'
 import Vuex from 'vuex'
-import FastClick from 'fastclick'
+// import FastClick from 'fastclick'
 import router from './router'
 import 'material-design-icons/iconfont/material-icons.css'
 
 Vue.use(Vuex)
 Vue.use(Xinyi);
 const shouldUseTransition = !/transition=none/.test(location.href)
-FastClick.attach(document.body)
+// FastClick.attach(document.body)
 
 const store = new Vuex.Store({
   state: {
@@ -27,6 +27,12 @@ const store = new Vuex.Store({
       navigationImmerse: false,
       navigationMenus: [],
       navigationBackButton: false
+    },
+    appConfig: {
+      appid: 1000,
+      openid: 'OPENID-aksajaskjaslas',
+      xinyitoken: 'jajaassaksadlkdas',
+      sid: '100'
     }
   },
   mutations: {
