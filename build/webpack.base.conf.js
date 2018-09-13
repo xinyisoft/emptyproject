@@ -69,14 +69,6 @@ const webpackConfig = {
         }
       },
       {
-        test: /\.less$/,
-        use: [
-          'style-loader',
-          { loader: 'css-loader', options: { importLoaders: 1 } },
-          'less-loader'
-        ]
-      },
-      {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
