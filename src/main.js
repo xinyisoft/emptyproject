@@ -22,22 +22,22 @@ Vue.use(ToastPlugin)
 
 const shouldUseTransition = !/transition=none/.test(location.href)
 // FastClick.attach(document.body)
-
+const navigationDefault = {
+  navigationBarBackgroundColor: '#ffffff',
+  navigationBarTextStyle: 'black',
+  navigationBarTitleText: '轻餐饮小程序',
+  backgroundColor: '#eeeeee',
+  backgroundTextStyle: 'light',
+  navigationImmerse: false,
+  navigationMenus: [],
+  navigationBackButton: false
+}
 const store = new Vuex.Store({
   state: {
     historyNumber: 0,
     isLoading: false,
     direction: null,
-    appNavConfig: {
-      navigationBarBackgroundColor: '#ffffff',
-      navigationBarTextStyle: 'black',
-      navigationBarTitleText: '轻餐饮小程序',
-      backgroundColor: '#eeeeee',
-      backgroundTextStyle: 'light',
-      navigationImmerse: false,
-      navigationMenus: [],
-      navigationBackButton: false
-    },
+    appNavConfig: navigationDefault,
     appConfig: {
       appid: 1000,
       openid: 'OPENID-aksajaskjaslas',
@@ -55,16 +55,7 @@ const store = new Vuex.Store({
       state.historyNumber = state.historyNumber - payload.number
     },
     setPageConfig(state, config) {
-      state.appNavConfig = Object.assign({}, state.appNavConfig, {
-        navigationBarBackgroundColor: '#ffffff',
-        navigationBarTextStyle: 'black',
-        navigationBarTitleText: '轻餐饮小程序',
-        backgroundColor: '#eeeeee',
-        backgroundTextStyle: 'light',
-        navigationImmerse: false,
-        navigationMenus: [],
-        navigationBackButton: false
-      }, config)
+      state.appNavConfig = Object.assign({}, state.appNavConfig, navigationDefault, config)
     },
     updateLoadingStatus(state, payload) {
       state.isLoading = payload.isLoading
