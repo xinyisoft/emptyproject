@@ -1,21 +1,26 @@
 <template>
   <div>
-    <router-link to="/pages/test/test">跳转到测试</router-link>
+    <group>
+      <cell-box link="/pages/test/test" is-link>
+        跳转到测试
+      </cell-box>
+    </group>
     <grid>
-      <grid-item label="Grid" v-for="i in 9">
-        {{i}}
+      <grid-item :label="'Grid'+i" v-for="i in 4" :key="i">
         <img slot="icon" src="../../assets/logo.png">
       </grid-item>
     </grid>
   </div>
 </template>
 <script>
-  import {Grid, GridItem} from 'vux'
+  import {Grid, GridItem, CellBox, Group} from 'vux'
 
   export default {
     name: 'mainView',
     components: {
+      CellBox,
       Grid,
+      Group,
       GridItem
     },
     methods: {
