@@ -2,18 +2,22 @@
   <div id="app">
     <section class="appview" :style="{backgroundColor:appNavConfig.backgroundColor}">
       <section class="xinyi-app-content" :style="{top:contentTop + 'px'}">
-        <router-view/>
+        <transition :name="transitionName">
+          <router-view/>
+        </transition>
       </section>
       <section class="xinyi-app-header"
                :style="{backgroundColor:appNavConfig.navigationBarBackgroundColor,color:appNavConfig.navigationBarTextStyle}">
         <div class="xinyi-app-bar-left-button">
-          <i class="material-icons">back</i>
+          <div class="nav-icon" v-if="historyNumber > 0" @click="goback"><i class="material-icons">chevron_left</i>
+          </div>
+          <div class="nav-icon"><i class="material-icons">close</i></div>
         </div>
         <div class="xinyi-app-bar-title">
           {{appNavConfig.navigationBarTitleText}}{{historyNumber}}
         </div>
         <div class="xinyi-app-bar-rght-tools">
-          <i class="material-icons">face</i>
+          <i class="material-icons">more_horiz</i>
         </div>
       </section>
     </section>
@@ -35,8 +39,18 @@
         isLoading: state => state.isLoading,
         direction: state => state.direction,
         appNavConfig: state => state.appNavConfig,
-        historyNumber: state => state.historyNumber
-      })
+        historyNumber: state => state.historyNumber,
+        transitionName: state => state.transitionName
+      }),
+      transitionName() {
+        if (!this.direction) return ''
+        return (this.direction === 'forward' ? 'slide-left' : 'slide-right')
+      }
+    },
+    methods: {
+      goback() {
+        this.$router.back()
+      }
     }
     // beforeCreate() {
     //   console.log('beforeCreate', this.$store)
@@ -89,12 +103,16 @@
       box-sizing: border-box;
       padding-top: 20px;
       .xinyi-app-bar-left-button {
-        padding: 10px;
+        display: flex;
+        .nav-icon {
+          flex: 1;
+          padding: 10px;
+        }
       }
       .xinyi-app-bar-title {
         flex: 1;
         overflow: hidden;
-        text-overflow:ellipsis;
+        text-overflow: ellipsis;
         white-space: nowrap;
         line-height: 46px;
         text-align: center;
@@ -113,42 +131,5 @@
   }
 </style>
 <style lang="less">
-  html {
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%
-  }
-
-  body {
-    line-height: 1.6;
-    font-family: -apple-system-font, Helvetica Neue, sans-serif;
-    background-color: #fbf9fe
-  }
-
-  body, html {
-    height: 100%;
-    width: 100%;
-    overflow-x: hidden
-  }
-
-  * {
-    margin: 0;
-    padding: 0
-  }
-
-  a img {
-    border: 0
-  }
-
-  a {
-    text-decoration: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
-  }
-
-  ::-webkit-input-placeholder {
-    font-family: -apple-system-font, Helvetica Neue, sans-serif
-  }
-
-  a {
-    -webkit-touch-callout: none
-  }
+  @import "assets/app";
 </style>

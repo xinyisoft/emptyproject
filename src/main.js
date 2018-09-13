@@ -14,7 +14,7 @@ const store = new Vuex.Store({
   state: {
     historyNumber: 0,
     isLoading: false,
-    direction: '',
+    direction: null,
     appNavConfig: {
       navigationBarBackgroundColor: '#ffffff',
       navigationBarTextStyle: 'black',
@@ -54,11 +54,9 @@ let EndTime = Date.now()
 document.addEventListener('touchend', () => {
   EndTime = Date.now()
 })
-window.addEventListener('popstate', function (event) {
-  event.returnValue = false;
-  // console.log('我监听到了浏览器的返回按钮事件啦', event);
+// 监听后退按钮
+window.addEventListener('popstate', function () {
   store.commit('historyNumberPush', {number: -1})
-  // router.go(-1);
 }, false);
 let isPush = false
 let methods = ['push', 'go', 'replace', 'forward', 'back']

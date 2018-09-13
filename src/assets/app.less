@@ -1,0 +1,71 @@
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%
+}
+
+body {
+  line-height: 1.6;
+  font-family: -apple-system-font, Helvetica Neue, sans-serif;
+  background-color: #fbf9fe
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden
+}
+
+* {
+  margin: 0;
+  padding: 0
+}
+
+a img {
+  border: 0
+}
+
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+::-webkit-input-placeholder {
+  font-family: -apple-system-font, Helvetica Neue, sans-serif
+}
+
+a {
+  -webkit-touch-callout: none
+}
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: all 250ms;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.slide-left-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.slide-left-leave-active {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.slide-right-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
