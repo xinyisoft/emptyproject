@@ -1,11 +1,6 @@
 <template>
   <div>
-    <group>
-      <cell-box is-link>
-        <a href="https://material.io/icons/" target="_blank">查看所有图标</a>
-      </cell-box>
-    </group>
-    <div v-for="(item,index) in iconsDefault.categories">
+    <div v-for="item in iconsDefault.categories">
       <group-title>{{item.name}}</group-title>
       <group>
         <grid :cols="3">
@@ -15,7 +10,6 @@
         </grid>
       </group>
     </div>
-
   </div>
 </template>
 
@@ -25,6 +19,7 @@
     data() {
       return {
         icons: ['more_horiz', 'more_horiz', 'more_horiz', 'more_horiz', 'more_horiz', 'more_horiz', 'more_horiz'],
+        disabled: typeof navigator !== 'undefined' && /iphone/i.test(navigator.userAgent) && /ucbrowser/i.test(navigator.userAgent),
         iconsDefault: require('./data/icons.json')
       }
     }

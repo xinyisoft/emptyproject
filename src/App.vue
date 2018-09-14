@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <section class="appview" :style="{backgroundColor:appNavConfig.backgroundColor}">
-      <section class="xinyi-app-content" :style="{top:contentTop + 'px'}">
+      <section class="xinyi-app-content" id="xinyi-view-box" :style="{top:contentTop + 'px'}">
         <transition :name="transitionName">
           <router-view/>
         </transition>
