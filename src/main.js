@@ -7,7 +7,7 @@ import Vuex from 'vuex'
 // import FastClick from 'fastclick'
 import router from './router'
 import 'material-design-icons/iconfont/material-icons.css'
-import XinyiAuth from './components/auth/index.js'
+import XinyiAuth from './components/xinyicom/index.js'
 import {TransferDom, AlertPlugin, ConfirmPlugin, ToastPlugin} from 'vux'
 
 Vue.directive('transfer-dom', TransferDom)
