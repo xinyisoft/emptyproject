@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="item in iconsDefault.categories">
+    <div v-for="item in iconsDefault.categories" :key="item.name">
       <group-title>{{item.name}}</group-title>
       <group>
         <grid :cols="3">

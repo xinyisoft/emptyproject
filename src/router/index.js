@@ -5,7 +5,7 @@ import routerdata from './router.json'
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [{
     path: '*',
     name: 'html404',

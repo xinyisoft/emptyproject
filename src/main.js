@@ -32,6 +32,7 @@ const navigationDefault = {
   navigationMenus: [],
   navigationBackButton: false
 }
+
 const store = new Vuex.Store({
   state: {
     historyNumber: 0,
@@ -44,10 +45,17 @@ const store = new Vuex.Store({
       xinyitoken: 'jajaassaksadlkdas',
       sid: '100'
     },
-    authPublic: ['/', '/pages/auth/no'],
-    authConfig: {'/pages/index/index': true, '/pages/test/test': true}
+    isAdmin: false,
+    authPublic: ['/', '/pages/auth/no', '/pages/example/*'],
+    authConfig: {}
   },
   mutations: {
+    setAdmin(state, paylaod) {
+      state.isAdmin = paylaod
+    },
+    setAuthConfig(state, payload) {
+      state.authConfig = Object.assign({}, payload)
+    },
     historyNumberPush(state, payload) {
       const numbers = state.historyNumber + payload.number
       state.historyNumber = numbers < 0 ? 0 : numbers
@@ -102,42 +110,72 @@ methods.forEach(key => {
     method.router.apply(null, args)
   }
 })
+const loadAppinfo = false
+
+function getAppInfo(callback) {
+  if (loadAppinfo) {
+    callback();
+    return true
+  }
+  try {
+    XY.getUserAuth({
+      success(res) {
+        console.log('getUserAuth', res)
+        alert(JSON.stringify(res))
+        if (res.super === true) {
+          this.$store.commit('setAdmin', true)
+        }
+        this.$store.commit('setAuthConfig', res.auth)
+        callback();
+      },
+      fail(e) {
+        callback()
+      }
+    })
+  } catch (e) {
+    callback();
+    console.log('getUserAuth Error ', e)
+  }
+}
+
 // 路由开始
 router.beforeEach((to, from, next) => {
-  console.log('beforeEach', to, from)
-  // 编译版本检测权限
-  if (process.env.NODE_ENV === 'production') {
-    if (store.state.authPublic.indexOf(to.path) === -1 && !store.state.authConfig[to.path]) {
-      router.push('/pages/auth/no')
-      next(false)
-      return false
-    }
-  }
-  // 设置页面开始加载
-  store.commit('updateLoadingStatus', {isLoading: true})
-  //
-  const toIndex = Storage.getItem(to.path)
-  const fromIndex = Storage.getItem(from.path)
-  if (toIndex) {
-    if (!fromIndex || parseInt(toIndex, 10) > parseInt(fromIndex, 10) || (toIndex === '0' && fromIndex === '0')) {
-      store.commit('updateDirection', {direction: 'forward'})
-    } else {
-      // 判断是否是ios左滑返回
-      if (!isPush && (Date.now() - EndTime) < 377) {
-        store.commit('updateDirection', {direction: ''})
-      } else {
-        store.commit('updateDirection', {direction: 'reverse'})
+  // console.log('beforeEach', to, from)
+  getAppInfo(function () {
+    // 编译版本检测权限
+    if (process.env.NODE_ENV === 'production' && !store.state.isAdmin) {
+      if (store.state.authPublic.indexOf(to.path) === -1 && !store.state.authConfig[to.path]) {
+        router.push('/pages/auth/no')
+        next(false)
+        return false
       }
     }
-  } else {
-    ++historyCount
-    Storage.setItem('count', historyCount)
-    to.path !== '/' && Storage.setItem(to.path, historyCount)
-    store.commit('updateDirection', {direction: 'forward'})
-  }
-  // 更新顶部导航配置
-  store.commit('setPageConfig', to.meta.config)
-  next()
+    // 设置页面开始加载
+    store.commit('updateLoadingStatus', {isLoading: true})
+    //
+    const toIndex = Storage.getItem(to.path)
+    const fromIndex = Storage.getItem(from.path)
+    if (toIndex) {
+      if (!fromIndex || parseInt(toIndex, 10) > parseInt(fromIndex, 10) || (toIndex === '0' && fromIndex === '0')) {
+        store.commit('updateDirection', {direction: 'forward'})
+      } else {
+        // 判断是否是ios左滑返回
+        if (!isPush && (Date.now() - EndTime) < 377) {
+          store.commit('updateDirection', {direction: ''})
+        } else {
+          store.commit('updateDirection', {direction: 'reverse'})
+        }
+      }
+    } else {
+      ++historyCount
+      Storage.setItem('count', historyCount)
+      to.path !== '/' && Storage.setItem(to.path, historyCount)
+      store.commit('updateDirection', {direction: 'forward'})
+    }
+    // 更新顶部导航配置
+    store.commit('setPageConfig', to.meta.config)
+    next()
+  })
 })
 // 路由结束
 router.afterEach(function (to) {
@@ -151,5 +189,8 @@ new Vue({
   store,
   router,
   components: {App},
-  template: '<App/>'
+  template: '<App/>',
+  beforeCreate() {
+
+  }
 })
