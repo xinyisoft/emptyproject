@@ -56,6 +56,9 @@ const store = new Vuex.Store({
     setAuthConfig(state, payload) {
       state.authConfig = Object.assign({}, payload)
     },
+    setAppConfig(state, payload) {
+      state.setappConfig = Object.assign({}, payload)
+    },
     historyNumberPush(state, payload) {
       const numbers = state.historyNumber + payload.number
       state.historyNumber = numbers < 0 ? 0 : numbers
@@ -132,6 +135,18 @@ function getAppInfo(callback) {
     })
   } catch (e) {
     callback();
+  }
+  try {
+    XY.getAppLoginInfo({
+      success(res) {
+        this.$store.commit('setAppConfig', res)
+      },
+      fail(e) {
+
+      }
+    })
+  } catch (e) {
+
   }
 }
 
