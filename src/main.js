@@ -189,8 +189,5 @@ new Vue({
   store,
   router,
   components: {App},
-  template: '<App/>',
-  beforeCreate() {
-
-  }
+  template: '<App/>'
 })
