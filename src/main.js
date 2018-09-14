@@ -142,11 +142,9 @@ function getAppInfo(callback) {
         this.$store.commit('setAppConfig', res)
       },
       fail(e) {
-
       }
     })
   } catch (e) {
-
   }
 }
 
