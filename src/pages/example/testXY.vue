@@ -1,18 +1,21 @@
 <template>
   <div class="testXY-view">
     <group>
-      <cell title="getUserInfo" @click.native="getUserInfo" is-link />
-      <cell title="getUserAuth" @click.native="getUserAuth" is-link />
-      <cell title="getSid" @click.native="getSid" is-link />
-      <cell title="showSuccess" @clic.native="showSuccess" is-link />
-      <cell title="getAppLoginInfo" @click.native="getAppLoginInfo" is-link />
-      <cell title="ClientType" @click.native="ClientType" is-link />
+      <cell title="getUserInfo" @click.native="getUserInfo" is-link/>
+      <cell title="getUserAuth" @click.native="getUserAuth" is-link/>
+      <cell title="getSid" @click.native="getSid" is-link/>
+      <cell title="showSuccess" @click.native="showSuccess" is-link/>
+      <cell title="getAppLoginInfo" @click.native="getAppLoginInfo" is-link/>
+      <cell title="ClientType" @click.native="ClientType" is-link/>
+      <cell title="getBusinessInfo" @click.native="getBusinessInfo" is-link/>
+      <cell title="getSignData" @click.native="getSignData" is-link/>
     </group>
   </div>
 </template>
 
 <script>
-  import { Group, Cell } from 'vux'
+  import {Group, Cell} from 'vux'
+
   export default {
     name: 'testXYView',
     data() {
@@ -28,15 +31,14 @@
       Group, Cell
     },
     methods: {
-      getUserInfo () {
+      getUserInfo() {
         this.$XY.getUserInfo((userinfo) => {
           console.log(userinfo)
           this.userinfo = userinfo
         })
       },
-      getUserAuth () {
+      getUserAuth() {
         this.$XY.getUserAuth({
-          key: 'asdf',
           success: res => {
             console.log(res)
             this.userAuth = res
@@ -46,7 +48,7 @@
           }
         })
       },
-      getSid () {
+      getSid() {
         this.$XY.getSid({
           success: res => {
             console.log(res)
@@ -57,12 +59,11 @@
           }
         })
       },
-      showSuccess () {
+      showSuccess() {
         this.$XY.showSuccess('测试XYshowSuccess方法')
       },
-      getAppLoginInfo () {
+      getAppLoginInfo() {
         this.$XY.getAppLoginInfo({
-          appid: 100087,
           success: res => {
             console.log(res)
             this.appinfo = res
@@ -72,8 +73,35 @@
           }
         })
       },
-      ClientType () {
+      ClientType() {
         console.log(this.$XY.ClientType())
+      },
+      getBusinessInfo() {
+        this.$XY.getBusinessInfo({
+          success: res => {
+            console.log(res)
+          },
+          fail: err => {
+            // 获取失败
+            console.log(err)
+          }
+        })
+      },
+      getSignData() {
+        this.$XY.getSignData({
+          data: {
+            'method': 'xxx.xxx.xxxx',
+            'sid': '123',
+            'openid': 'OPENID-WERTYUUIIOI',
+            'xxxx': 'xxxxxxxxxx'
+          },
+          success: res => {
+            console.log(res)
+          },
+          fail: err => {
+            console.log(err)
+          }
+        })
       }
     }
   }

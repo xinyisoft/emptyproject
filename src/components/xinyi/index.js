@@ -1,35 +1,41 @@
 const xinyi = {
   install(Vue, options) {
     Vue.prototype.$XY = {
-      getUserInfo: function (callback) {
+      getUserInfo(callback) {
         return XY.getUserInfo(callback)
       },
-      request: function (opt) {
+      request(opt) {
         return XY.request(opt)
       },
-      webAppRequest: function (opt) {
+      webAppRequest(opt) {
         return XY.webAppRequest(opt)
       },
-      showError: function (messageText) {
+      showError(messageText) {
         return XY.showError(messageText)
       },
-      showSuccess: function (messageText) {
+      showSuccess(messageText) {
         return XY.showSuccess(messageText)
       },
-      showInfo: function (messageText) {
+      showInfo(messageText) {
         return XY.showInfo(messageText)
       },
-      getSid: function (opt) {
+      getSid(opt) {
         return XY.getSid(opt);
       },
-      getUserAuth: function (opt) {
+      getUserAuth(opt) {
         return XY.getUserAuth(opt);
       },
-      getAppLoginInfo: function (opt) {
+      getAppLoginInfo(opt) {
         return XY.getAppLoginInfo(opt)
       },
-      ClientType: function () {
+      ClientType() {
         return XY.ClientType()
+      },
+      getBusinessInfo(opt) {
+        return XY.getBusinessInfo(opt)
+      },
+      getSignData(opt) {
+        return XY.getSignData(opt)
       }
     }
   }
