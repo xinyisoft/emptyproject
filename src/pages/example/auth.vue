@@ -3,8 +3,9 @@
 
     <div>
       <div-auth auth-data="/pages/index/index,/pages/test/test" display="inline">
-        div-auth display 标签
+        div-auth display inlen 标签
       </div-auth>
+      <br/>
       <span-auth auth-data="/pages/index/index">
         Span 权限验证
       </span-auth>
@@ -24,13 +25,8 @@
 </template>
 
 <script>
-  import {Grid, GridItem, CellBox, Group, GroupTitle} from 'vux'
-
   export default {
-    name: 'exampleView',
-    comments: {
-      Grid, GridItem, CellBox, Group, GroupTitle
-    }
+    name: 'exampleView'
   }
 </script>
 

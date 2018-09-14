@@ -147,11 +147,6 @@ router.afterEach(function (to) {
   // 设置页面加载完成
   store.commit('updateLoadingStatus', {isLoading: false})
 })
-if (process.env.NODE_ENV === 'production') {
-  Vue.prototype.$Config = require('./config/production.json')
-} else {
-  Vue.prototype.$Config = require('./config/development.json')
-}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
