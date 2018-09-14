@@ -49,10 +49,8 @@ const store = new Vuex.Store({
   },
   mutations: {
     historyNumberPush(state, payload) {
-      state.historyNumber = state.historyNumber + payload.number
-    },
-    historyNumberDec(state, payload) {
-      state.historyNumber = state.historyNumber - payload.number
+      const numbers = state.historyNumber + payload.number
+      state.historyNumber = numbers < 0 ? 0 : numbers
     },
     setPageConfig(state, config) {
       state.appNavConfig = Object.assign({}, state.appNavConfig, navigationDefault, config)
