@@ -8,6 +8,9 @@
       <cell-box link="/pages/example/testXY" is-link>
         XY方法测试
       </cell-box>
+      <cell-box link="/pages/example/icons" is-link>
+        图标
+      </cell-box>
     </group>
     <group-title>权限</group-title>
     <group>

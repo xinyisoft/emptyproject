@@ -1,5 +1,6 @@
 import DivAuth from './DivAuth'
 import SpanAuth from './SpanAuth'
+import XyIcon from './XyIcon'
 import {
   Actionsheet,
   Agree,
@@ -158,6 +159,7 @@ import {
 const components = {
   DivAuth,
   SpanAuth,
+  XyIcon,
   Actionsheet,
   Agree,
   Alert,
