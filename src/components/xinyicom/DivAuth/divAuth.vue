@@ -15,9 +15,11 @@
     },
     computed: {
       ...mapState({
+        isAdmin: state => state.isAdmin,
         authConfig: state => state.authConfig
       }),
       haveAuth() {
+        if (this.isAdmin) return true
         if (this.authData === '') return true
         const auth = this.authData.split(',')
         for (var i in auth) {
