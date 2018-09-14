@@ -124,9 +124,9 @@ function getAppInfo(callback) {
     XY.getUserAuth({
       success(res) {
         if (res.super === true) {
-          this.$store.commit('setAdmin', true)
+          store.commit('setAdmin', true)
         }
-        this.$store.commit('setAuthConfig', res.auth)
+        store.commit('setAuthConfig', res.auth)
         callback();
       },
       fail(e) {
@@ -139,7 +139,7 @@ function getAppInfo(callback) {
   try {
     XY.getAppLoginInfo({
       success(res) {
-        this.$store.commit('setAppConfig', res)
+        store.commit('setAppConfig', res)
       },
       fail(e) {
       }
