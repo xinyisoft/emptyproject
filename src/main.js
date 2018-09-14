@@ -120,8 +120,6 @@ function getAppInfo(callback) {
   try {
     XY.getUserAuth({
       success(res) {
-        console.log('getUserAuth', res)
-        alert(JSON.stringify(res))
         if (res.super === true) {
           this.$store.commit('setAdmin', true)
         }
@@ -134,7 +132,6 @@ function getAppInfo(callback) {
     })
   } catch (e) {
     callback();
-    console.log('getUserAuth Error ', e)
   }
 }
 
