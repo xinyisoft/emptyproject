@@ -1,18 +1,18 @@
 <template>
   <div class="testXY-view">
-    <p><button @click="getUserInfo">getUserInfo</button>{{userinfo.openid}}</p>
-    <p><button @click="getUserAuth">getUserAuth</button>{{userAuth}}</p>
-    <p><button @click="getSid">getSid</button>{{sid}}</p>
-    <p><button @click="showSuccess">showSuccess</button></p>
-    <div>
-      <button @click="getAppLoginInfo">getAppLoginInfo</button>
-      <div>xinyitoken: {{appinfo.xinyitoken}}</div>
-      <div>openid: {{appinfo.openid}}</div>
-    </div>
+    <group>
+      <cell title="getUserInfo" @click.native="getUserInfo" is-link />
+      <cell title="getUserAuth" @click.native="getUserAuth" is-link />
+      <cell title="getSid" @click.native="getSid" is-link />
+      <cell title="showSuccess" @clic.native="showSuccess" is-link />
+      <cell title="getAppLoginInfo" @click.native="getAppLoginInfo" is-link />
+      <cell title="ClientType" @click.native="ClientType" is-link />
+    </group>
   </div>
 </template>
 
 <script>
+  import { Group, Cell } from 'vux'
   export default {
     name: 'testXYView',
     data() {
@@ -20,12 +20,12 @@
         userinfo: {},
         userAuth: {},
         sid: '',
-        appinfo: {}
+        appinfo: {},
+        money: 123
       }
     },
-    created() {
-    },
     components: {
+      Group, Cell
     },
     methods: {
       getUserInfo () {
@@ -71,6 +71,9 @@
             console.log(err)
           }
         })
+      },
+      ClientType () {
+        console.log(this.$XY.ClientType())
       }
     }
   }
