@@ -41,20 +41,7 @@ const xinyi = {
         return XY.uploadFiles(opt)
       },
       chooseImage(opt) {
-        const input = document.createElement('input')
-        input.setAttribute('type', 'file')
-        input.setAttribute('accept', 'image/*')
-        input.setAttribute('multiple', 'multiple')
-        input.addEventListener('change', function (e) {
-          const files = e.path[0].files
-          const tempFilePaths = []
-          const len = opt.count ? opt.count > files.length ? files.length : opt.count : files.length
-          for (let i = 0; i < len; i++) {
-            tempFilePaths.push(files[i].path)
-          }
-          opt.success({ tempFilePaths })
-        }, false)
-        input.click()
+        return XY.chooseImage(opt)
       }
     }
   }
