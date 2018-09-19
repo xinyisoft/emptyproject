@@ -61,6 +61,9 @@
   }
 </script>
 <style lang="less" scoped>
+  ::-webkit-scrollbar{
+    display: none;
+  }
   .appview {
     position: fixed;
     top: 0;

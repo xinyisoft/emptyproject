@@ -138,19 +138,17 @@
         })
       },
       uploadFiles(e) {
-        console.log(e.target.files[0])
         this.$XY.uploadFiles({
           url: 'http://api.xinyisoft.org/Fileupload',
           filePath: e.target.files[0].path,
           start: () => {
-            console('开始上传')
+            console.log('开始上传')
           },
           change: (obj) => {
             console.log(obj)
           },
-          success: (fileinfo) => {
-            console.log(fileinfo)
-            this.imgList.push('http://f.xinyisoft.org/' + fileinfo.filekey)
+          success: (res) => {
+            this.imgList.push('http://f.xinyisoft.org/' + res.data.filekey)
           },
           fail: (obj) => {
             console.log(obj)
@@ -173,6 +171,9 @@
 </script>
 
 <style scoped lang="less">
+  ul, li {
+    list-style: none;
+  }
   .weui-cell {
     padding: 10px 15px;
     position: relative;
