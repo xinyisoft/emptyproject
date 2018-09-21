@@ -1,5 +1,5 @@
 <template>
-  <i class="material-icons" :style="{fontSize:size,color: color}">{{value}}</i>
+  <i class="material-icons" :style="{fontSize:size + 'px',color: color}">{{value}}</i>
 </template>
 <script>
   export default {
