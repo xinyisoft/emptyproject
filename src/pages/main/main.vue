@@ -18,17 +18,6 @@
         权限包裹标签
       </cell-box>
     </group>
-    <group-title>权限</group-title>
-    <grid>
-      <grid-item label="测试六个字符" v-for="i in 4">
-        <img slot="icon" src="../../assets/logo.png">
-      </grid-item>
-    </grid>
-    <grid>
-      <grid-item label="测试六个啊字符" v-for="i in 4">
-        <img slot="icon" src="../../assets/logo.png">
-      </grid-item>
-    </grid>
   </div>
 </template>
 <script>

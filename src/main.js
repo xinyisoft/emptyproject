@@ -66,7 +66,6 @@ const store = new Vuex.Store({
     setPageConfig(state, config) {
       state.appNavConfig = Object.assign({}, state.appNavConfig, navigationDefault, config)
       try {
-        console.log('setStatusBarColor')
         XY.setStatusBarColor({
           color: state.appNavConfig.navigationBarBackgroundColor
         })
