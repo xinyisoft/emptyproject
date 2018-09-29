@@ -9,6 +9,10 @@
       <cell title="ClientType" @click.native="ClientType" is-link/>
       <cell title="getBusinessInfo" @click.native="getBusinessInfo" is-link/>
       <cell title="getSignData" @click.native="getSignData" is-link/>
+      <cell title="setCache" @click.native="setCache" is-link/>
+      <cell title="getCache" @click.native="getCache" is-link/>
+      <cell title="delCache" @click.native="delCache" is-link/>
+      <!--<cell title="showModal" @click.native="showModal" is-link/>-->
     </group>
     <div class="weui-cell">
       <div class="weui-cell__bd">
@@ -88,7 +92,7 @@
             console.log(res)
             this.sid = res.sid
           },
-          faild: err => {
+          fail: err => {
             console.log(err)
           }
         })
@@ -148,6 +152,7 @@
             console.log(obj)
           },
           success: (res) => {
+            console.log(res)
             this.imgList.push('http://f.xinyisoft.org/' + res.data.filekey)
           },
           fail: (obj) => {
@@ -163,6 +168,28 @@
           },
           fail: err => {
             console.log(err)
+          }
+        })
+      },
+      getCache() {
+        console.log(this.$XY.getCache('bus'))
+      },
+      setCache() {
+        this.$XY.setCache('bus', [{a: 123}])
+      },
+      delCache() {
+        this.$XY.delCache('bus')
+      },
+      showModal() {
+        this.$XY.showModal({
+          title: '提示',
+          content: '这是一个模态弹窗',
+          success: function(res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
           }
         })
       }
