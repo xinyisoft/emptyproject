@@ -31,7 +31,7 @@
     name: 'App',
     data() {
       return {
-        contentTop: 68
+        contentTop: 46
       }
     },
     computed: {
@@ -71,7 +71,7 @@
     right: 0;
     bottom: 0;
     .xinyi-app-header {
-      height: 66px;
+      height: 46px;
       position: absolute;
       top: 0;
       left: 0;
@@ -80,7 +80,7 @@
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
-      padding-top: 20px;
+      /*padding-top: 10px;*/
       .xinyi-app-bar-left-button {
         display: flex;
         .nav-icon {
@@ -102,7 +102,7 @@
     }
     .xinyi-app-content {
       position: absolute;
-      top: 66px;
+      top: 46px;
       left: 0;
       right: 0;
       bottom: 0;
@@ -185,5 +185,11 @@
 
   .weui-grids {
     background-color: #fff;
+    .weui-grid__label{
+      font-size: 12px;
+    }
+    .weui-grid__icon + .weui-grid__label{
+      margin-top: 8px;
+    }
   }
 </style>

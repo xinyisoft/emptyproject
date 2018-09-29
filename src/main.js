@@ -57,7 +57,7 @@ const store = new Vuex.Store({
       state.authConfig = Object.assign({}, payload)
     },
     setAppConfig(state, payload) {
-      state.setappConfig = Object.assign({}, payload)
+      state.appConfig = Object.assign({}, payload)
     },
     historyNumberPush(state, payload) {
       const numbers = state.historyNumber + payload.number
@@ -65,6 +65,12 @@ const store = new Vuex.Store({
     },
     setPageConfig(state, config) {
       state.appNavConfig = Object.assign({}, state.appNavConfig, navigationDefault, config)
+      try {
+        XY.setStatusBarColor({
+          color: state.appNavConfig.navigationBarBackgroundColor
+        })
+      } catch (e) {
+      }
     },
     updateLoadingStatus(state, payload) {
       state.isLoading = payload.isLoading
