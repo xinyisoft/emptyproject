@@ -3,7 +3,15 @@ const xinyi = {
   install(Vue, options) {
     Vue.prototype.$XY = {
       getXinyiSDKMethod() {
-        return process.env.NODE_ENV !== 'production' ? base : XY
+        if(process.env.NODE_ENV !== 'production') {
+          try {
+            return XY
+          } catch (e) {
+            return base
+          }
+        } else {
+          return XY
+        }
       },
       getUserInfo(callback) {
         const XY = this.getXinyiSDKMethod()
