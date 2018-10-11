@@ -1,10 +1,14 @@
 <template>
   <div class="testXY-view">
     <group>
-      <cell title="getUserInfo" @click.native="getUserInfo" is-link/>
+      <cell title="getUserInfo(对象传参)" @click.native="getUserInfoObj" is-link/>
       <cell title="getUserAuth" @click.native="getUserAuth" is-link/>
       <cell title="getSid" @click.native="getSid" is-link/>
+      <cell title="request" @click.native="request" is-link/>
       <cell title="showSuccess" @click.native="showSuccess" is-link/>
+      <cell title="showError" @click.native="showError" is-link/>
+      <cell title="showInfo" @click.native="showInfo" is-link/>
+      <cell title="showNotice" @click.native="showNotice" is-link/>
       <cell title="getAppLoginInfo" @click.native="getAppLoginInfo" is-link/>
       <cell title="ClientType" @click.native="ClientType" is-link/>
       <cell title="getBusinessInfo" @click.native="getBusinessInfo" is-link/>
@@ -12,7 +16,7 @@
       <cell title="setCache" @click.native="setCache" is-link/>
       <cell title="getCache" @click.native="getCache" is-link/>
       <cell title="delCache" @click.native="delCache" is-link/>
-      <!--<cell title="showModal" @click.native="showModal" is-link/>-->
+      <cell title="showModal" @click.native="showModal" is-link/>
     </group>
     <div class="weui-cell">
       <div class="weui-cell__bd">
@@ -22,10 +26,12 @@
           </div>
           <div class="weui-uploader__bd">
             <ul class="weui-uploader__files" id="uploaderFiles" v-if="imgList.length > 0">
-              <li class="weui-uploader__file" v-for="(img, index) in imgList" :key="index" :style="'backgroundImage:url(' + img + ')'"></li>
+              <li class="weui-uploader__file" v-for="(img, index) in imgList" :key="index"
+                  :style="'backgroundImage:url(' + img + ')'"></li>
             </ul>
             <div class="weui-uploader__input-box">
-              <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" @change="uploadFiles" multiple="">
+              <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" @change="uploadFiles"
+                     multiple="">
             </div>
           </div>
         </div>
@@ -39,7 +45,8 @@
           </div>
           <div class="weui-uploader__bd">
             <ul class="weui-uploader__files" v-if="chooseImageList.length > 0">
-              <li class="weui-uploader__file" v-for="(img, index) in chooseImageList" :key="index" :style="'backgroundImage:url(' + img + ')'"></li>
+              <li class="weui-uploader__file" v-for="(img, index) in chooseImageList" :key="index"
+                  :style="'backgroundImage:url(' + img + ')'"></li>
             </ul>
             <div class="weui-uploader__input-box" @click="chooseImage"></div>
           </div>
@@ -51,7 +58,6 @@
 
 <script>
   import {Group, Cell} from 'vux'
-
   export default {
     name: 'testXYView',
     data() {
@@ -69,10 +75,12 @@
       Group, Cell
     },
     methods: {
-      getUserInfo() {
-        this.$XY.getUserInfo((userinfo) => {
-          console.log(userinfo)
-          this.userinfo = userinfo
+      getUserInfoObj() {
+        this.$XY.getUserInfo({
+          success: (userinfo) => {
+            console.log(userinfo)
+            this.userinfo = userinfo
+          }
         })
       },
       getUserAuth() {
@@ -97,8 +105,33 @@
           }
         })
       },
+      request() {
+        this.$XY.request({
+          url: '',
+          success: res => {
+            console.log(res)
+            this.sid = res.sid
+          },
+          fail: err => {
+            console.log(err)
+          }
+        })
+      },
       showSuccess() {
-        this.$XY.showSuccess('测试XYshowSuccess方法')
+        this.$XY.showSuccess('测试XY.showSuccess方法')
+      },
+      showError() {
+        this.$XY.showError('测试XY.showError方法')
+      },
+      showInfo() {
+        this.$XY.showInfo('测试XY.showInfo方法')
+      },
+      showNotice() {
+        this.$XY.showNotice({
+          title: '标题',
+          messageText: '内容',
+          link: 'http://www.xinyisoft.cn'
+        })
       },
       getAppLoginInfo() {
         this.$XY.getAppLoginInfo({
@@ -131,7 +164,8 @@
             'method': 'xxx.xxx.xxxx',
             'sid': '123',
             'openid': 'OPENID-WERTYUUIIOI',
-            'xxxx': 'xxxxxxxxxx'
+            'appid': '100087',
+            'secret': '926e78668da057684b37f9e3'
           },
           success: res => {
             console.log(res)
@@ -184,7 +218,7 @@
         this.$XY.showModal({
           title: '提示',
           content: '这是一个模态弹窗',
-          success: function(res) {
+          success: function (res) {
             if (res.confirm) {
               console.log('用户点击确定')
             } else if (res.cancel) {
@@ -201,6 +235,7 @@
   ul, li {
     list-style: none;
   }
+
   .weui-cell {
     padding: 10px 15px;
     position: relative;
@@ -213,11 +248,13 @@
     background-color: #fff;
     margin-top: 10px;
   }
+
   .weui-cell__bd {
     -webkit-box-flex: 1;
     -webkit-flex: 1;
     flex: 1;
   }
+
   .weui-uploader__hd {
     display: -webkit-box;
     display: -webkit-flex;
@@ -227,16 +264,19 @@
     -webkit-align-items: center;
     align-items: center;
   }
+
   .weui-uploader__title {
     -webkit-box-flex: 1;
     -webkit-flex: 1;
     flex: 1;
   }
+
   .weui-uploader__bd {
     margin-bottom: -4px;
     margin-right: -9px;
     overflow: hidden;
   }
+
   .weui-uploader__file {
     float: left;
     margin-right: 9px;
@@ -246,6 +286,7 @@
     background: no-repeat center center;
     background-size: cover;
   }
+
   .weui-uploader__input-box {
     float: left;
     position: relative;
@@ -283,6 +324,7 @@
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
   }
+
   .weui-uploader__input-box:before, .weui-uploader__input-box:after {
     content: " ";
     position: absolute;

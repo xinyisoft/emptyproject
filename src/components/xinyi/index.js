@@ -1,13 +1,9 @@
+import base from './xinyi.js'
 const xinyi = {
   install(Vue, options) {
     Vue.prototype.$XY = {
       getXinyiSDKMethod() {
-        // return process.env.NODE_ENV !== 'production' ? base : XY
-        try {
-          return !XY ? null : XY
-        } catch (e) {
-          console.log(e)
-        }
+        return process.env.NODE_ENV !== 'production' ? base : XY
       },
       getUserInfo(callback) {
         const XY = this.getXinyiSDKMethod()
@@ -18,6 +14,10 @@ const xinyi = {
       request(opt) {
         const XY = this.getXinyiSDKMethod()
         try { return XY.request(opt) } catch (e) {}
+      },
+      HttpGet(opt) {
+        const XY = this.getXinyiSDKMethod()
+        try { return XY.HttpGet(opt) } catch (e) {}
       },
       webAppRequest(opt) {
         const XY = this.getXinyiSDKMethod()
@@ -34,6 +34,10 @@ const xinyi = {
       showInfo(messageText) {
         const XY = this.getXinyiSDKMethod()
         try { return XY.showInfo(messageText) } catch (e) {}
+      },
+      showNotice(opt) {
+        const XY = this.getXinyiSDKMethod()
+        try { return XY.showNotice(opt) } catch (e) {}
       },
       getSid(opt) {
         const XY = this.getXinyiSDKMethod()
@@ -102,6 +106,14 @@ const xinyi = {
       clearConfig(key) {
         const XY = this.getXinyiSDKMethod()
         try { return XY.clearConfig(key) } catch (e) {}
+      },
+      showModal(opt) {
+      	const XY = this.getXinyiSDKMethod()
+        try { return XY.showModal(opt) } catch (e) {}
+      },
+      downFile(opt) {
+        const XY = this.getXinyiSDKMethod()
+        try { return XY.downFile(opt) } catch (e) {}
       }
     };
   }
