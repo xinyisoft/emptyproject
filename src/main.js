@@ -45,6 +45,7 @@ const store = new Vuex.Store({
       xinyitoken: 'jajaassaksadlkdas',
       sid: '100'
     },
+    navigationTools: [],
     isAdmin: false,
     authPublic: ['/', '/pages/auth/no', '/pages/example/*'],
     authConfig: {}
@@ -52,6 +53,14 @@ const store = new Vuex.Store({
   mutations: {
     setAdmin(state, paylaod) {
       state.isAdmin = paylaod
+    },
+    setNavigationTools(state, paylaod) {
+      var menus = paylaod.reverse() || [];
+      if (menus.length > 2) {
+        menus = [];
+        console.error('toolsError:顶部工具栏最多只能设置两个，如需更多操作可以通过设置child来扩展更多操作')
+      }
+      state.navigationTools = menus;
     },
     setAuthConfig(state, payload) {
       state.authConfig = Object.assign({}, payload)
@@ -168,6 +177,7 @@ router.beforeEach((to, from, next) => {
     }
     // 设置页面开始加载
     store.commit('updateLoadingStatus', {isLoading: true})
+    store.commit('setNavigationTools', [])
     //
     const toIndex = Storage.getItem(to.path)
     const fromIndex = Storage.getItem(from.path)

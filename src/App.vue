@@ -17,10 +17,14 @@
           {{appNavConfig.navigationBarTitleText}}
         </div>
         <div class="xinyi-app-bar-rght-tools">
-          <i class="material-icons">more_horiz</i>
+          <div v-for="(item,index) in navigationTools" v-bind:key="index">
+            <i v-if="item.child" @click="havChildToolsClick(item.child)" class="material-icons">more_horiz</i>
+            <i v-else class="material-icons" @click="item.click">{{item.icon}}</i>
+          </div>
         </div>
       </section>
     </section>
+    <actionsheet v-model="showTools" :menus="toolsMenus" show-cancel @on-click-menu="toolsClick"></actionsheet>
   </div>
 </template>
 
@@ -31,6 +35,9 @@
     name: 'App',
     data() {
       return {
+        showTools: false,
+        toolsMenus: [],
+        toolsMenusClick: {},
         contentTop: 46
       }
     },
@@ -40,7 +47,8 @@
         direction: state => state.direction,
         appNavConfig: state => state.appNavConfig,
         historyNumber: state => state.historyNumber,
-        transitionName: state => state.transitionName
+        transitionName: state => state.transitionName,
+        navigationTools: state => state.navigationTools
       }),
       transitionName() {
         if (!this.direction) return ''
@@ -50,6 +58,20 @@
     methods: {
       goback() {
         this.$router.back()
+      },
+      toolsClick(menuIndex, menuItem) {
+        this.toolsMenusClick[menuItem].call();
+      },
+      havChildToolsClick(child) {
+        this.showTools = true;
+        const toolsMenu = [];
+        const toolMenuClick = {};
+        child.forEach(function (item) {
+          toolsMenu.push(item.title)
+          toolMenuClick[item.title] = item.click;
+        })
+        this.toolsMenus = toolsMenu;
+        this.toolsMenusClick = toolMenuClick;
       },
       closeApp() {
         try {
@@ -61,9 +83,10 @@
   }
 </script>
 <style lang="less" scoped>
-  ::-webkit-scrollbar{
+  ::-webkit-scrollbar {
     display: none;
   }
+
   .appview {
     position: fixed;
     top: 0;
@@ -97,7 +120,17 @@
         text-align: center;
       }
       .xinyi-app-bar-rght-tools {
-        padding: 10px;
+        div {
+          width: 46px;
+          height: 46px;
+          float: right;
+        }
+        i {
+          width: 46px;
+          height: 46px;
+          line-height: 46px;
+          text-align: center;
+        }
       }
     }
     .xinyi-app-content {
@@ -185,10 +218,10 @@
 
   .weui-grids {
     background-color: #fff;
-    .weui-grid__label{
+    .weui-grid__label {
       font-size: 12px;
     }
-    .weui-grid__icon + .weui-grid__label{
+    .weui-grid__icon + .weui-grid__label {
       margin-top: 8px;
     }
   }

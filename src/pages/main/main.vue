@@ -25,8 +25,31 @@
     name: 'mainView',
     methods: {
       test() {
-
+        console.log('test')
       }
+    },
+    created() {
+      var that = this;
+      this.$store.commit('setNavigationTools', [
+        {
+          icon: 'add',
+          click: function () {
+            that.test()
+          }
+        },
+        {
+          icon: 'reorder',
+          child: [
+            {
+              title: '测试添加',
+              icon: 'add',
+              click: function () {
+                that.test()
+              }
+            }
+          ]
+        }
+      ])
     }
   }
 </script>
