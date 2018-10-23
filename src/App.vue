@@ -240,4 +240,11 @@
     text-align: center;
     line-height: 2;
   }
+  .el-collapse-item__header{
+    padding-left: 10px;
+    font-size: 14px;
+  }
+  .el-collapse-item__content{
+    padding: 0;
+  }
 </style>

@@ -161,7 +161,9 @@ import {
 } from 'vux'
 
 import {
-  Tree
+  Tree,
+  Collapse,
+  CollapseItem
 } from 'element-ui'
 
 const components = {
@@ -336,6 +338,8 @@ const XinyiAuthApi = {
     });
     Vue.use(Pinyin)
     Vue.use(Tree)
+    Vue.use(Collapse)
+    Vue.use(CollapseItem)
   }
 }
 export default XinyiAuthApi

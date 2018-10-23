@@ -14,6 +14,9 @@
       <cell-box link="/pages/example/draglist" is-link>
         可拖动列表
       </cell-box>
+      <cell-box link="/pages/example/collapse" is-link>
+        手风琴
+      </cell-box>
     </group>
     <group-title>权限</group-title>
     <group>
