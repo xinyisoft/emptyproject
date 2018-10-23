@@ -73,7 +73,9 @@ const store = new Vuex.Store({
       state.historyNumber = numbers < 0 ? 0 : numbers
     },
     setPageConfig(state, config) {
-      state.appNavConfig = Object.assign({}, state.appNavConfig, navigationDefault, config)
+      const navconfig = Object.assign({}, navigationDefault, config)
+      navconfig.navigationBarTitleText = navconfig.navigationBarTitleText.length > 8 ? navconfig.navigationBarTitleText.substr(0, 8) + '...' : navconfig.navigationBarTitleText
+      state.appNavConfig = navconfig;
       try {
         XY.setStatusBarColor({
           color: state.appNavConfig.navigationBarBackgroundColor

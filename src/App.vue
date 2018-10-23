@@ -13,7 +13,7 @@
           </div>
           <div class="nav-icon" @click="closeApp"><i class="material-icons">close</i></div>
         </div>
-        <div class="xinyi-app-bar-title">
+        <div class="xinyi-app-bar-title" :style="{marginLeft:titlePadding}">
           {{appNavConfig.navigationBarTitleText}}
         </div>
         <div class="xinyi-app-bar-rght-tools">
@@ -50,6 +50,9 @@
         transitionName: state => state.transitionName,
         navigationTools: state => state.navigationTools
       }),
+      titlePadding() {
+        return (this.navigationTools.length * 46) - (this.historyNumber > 0 ? 88 : 44) + 'px';
+      },
       transitionName() {
         if (!this.direction) return ''
         return (this.direction === 'forward' ? 'slide-left' : 'slide-right')
@@ -223,6 +226,14 @@
     }
     .weui-grid__icon + .weui-grid__label {
       margin-top: 8px;
+    }
+  }
+
+  .el-tree-node__content {
+    height: 44px;
+    line-height: 44px;
+    .el-tree-node__label {
+      font-size: 17px;
     }
   }
 </style>

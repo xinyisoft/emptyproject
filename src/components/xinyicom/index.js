@@ -157,6 +157,10 @@ import {
   XTextarea
 } from 'vux'
 
+import {
+  Tree
+} from 'element-ui'
+
 const components = {
   DivAuth,
   SpanAuth,
@@ -326,6 +330,7 @@ const XinyiAuthApi = {
       Vue.component(key, XinyiAuth[key]);
     });
     Vue.use(Pinyin)
+    Vue.use(Tree)
   }
 }
 export default XinyiAuthApi
