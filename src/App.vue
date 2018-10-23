@@ -236,4 +236,8 @@
       font-size: 17px;
     }
   }
+  .count-to-wrapper{
+    text-align: center;
+    line-height: 2;
+  }
 </style>

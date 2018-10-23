@@ -11,6 +11,9 @@
       <cell-box link="/pages/example/icons" is-link>
         图标
       </cell-box>
+      <cell-box link="/pages/example/draglist" is-link>
+        可拖动列表
+      </cell-box>
     </group>
     <group-title>权限</group-title>
     <group>
@@ -22,7 +25,11 @@
     <group>
       <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
     </group>
-
+    <group-title>滚动数字</group-title>
+    <group>
+      <count-to :end="2534">
+      </count-to>
+    </group>
   </div>
 </template>
 <script>

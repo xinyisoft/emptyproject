@@ -2,6 +2,9 @@ import DivAuth from './DivAuth'
 import SpanAuth from './SpanAuth'
 import XyIcon from './XyIcon'
 import Pinyin from './pinyin'
+import countTo from './count-to'
+import dragList from './drag-list'
+
 import {
   Actionsheet,
   Agree,
@@ -165,6 +168,7 @@ const components = {
   DivAuth,
   SpanAuth,
   XyIcon,
+  dragList,
   Actionsheet,
   Agree,
   Alert,
@@ -316,6 +320,7 @@ const components = {
   XProgress,
   XSwitch,
   XTable,
+  countTo,
   XTextarea
 }
 

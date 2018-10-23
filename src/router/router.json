@@ -5,5 +5,6 @@
   "pages/example/link1",
   "pages/example/testXY",
   "pages/example/icons",
-  "pages/example/link2"
+  "pages/example/link2",
+  "pages/example/draglist"
 ]
