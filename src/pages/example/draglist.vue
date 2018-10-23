@@ -34,16 +34,16 @@
     mounted() {
       this.list = [
         {
-          "id": 1,
-          "name": "测试1"
+          id: 1,
+          name: '测试1'
         },
         {
-          "id": 2,
-          "name": "测试2"
+          id: 2,
+          name: '测试2'
         },
         {
-          "id": 3,
-          "name": "测试3"
+          id: 3,
+          name: '测试3'
         }
       ];
     }
